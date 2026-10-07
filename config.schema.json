@@ -1,0 +1,1 @@
+{"type":"object","properties":{"showIds":{"type":"boolean","title":"显示群和发送者 openid","default":true},"helpTitle":{"type":"string","title":"帮助标题","default":"机器人命令帮助","minLength":1,"maxLength":100}},"additionalProperties":false}
