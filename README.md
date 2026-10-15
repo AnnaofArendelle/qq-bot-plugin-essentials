@@ -8,7 +8,7 @@
 
 ## 用户安装
 
-1. 在 [Releases](https://github.com/AnnaofArendelle/qq-bot-plugin-essentials/releases) 下载 `essentials-1.0.4.zip`。不要使用 GitHub 的 Source code ZIP。
+1. 在 [Releases](https://github.com/AnnaofArendelle/qq-bot-plugin-essentials/releases) 下载 `essentials-1.0.5.zip`。不要使用 GitHub 的 Source code ZIP。
 2. WebUI → 插件管理 → 上传 ZIP。
 3. 检查权限和设置，启用插件，选择群聊/私聊范围。
 4. 点击全局「保存并部署」，等待面板显示新配置已生效。
@@ -23,7 +23,7 @@ npm run typecheck
 npm test
 ```
 
-输出 `dist/essentials-1.0.4.zip`。SDK 独立维护于 [qq-bot-plugin-sdk](https://github.com/AnnaofArendelle/qq-bot-plugin-sdk)。配置表单由 config.schema.json 自动生成；完整接口、资源限制和 AI 开发提示见 SDK 仓库。
+输出 `dist/essentials-1.0.5.zip`。SDK 独立维护于 [qq-bot-plugin-sdk](https://github.com/AnnaofArendelle/qq-bot-plugin-sdk)。配置表单由 config.schema.json 自动生成；完整接口、资源限制和 AI 开发提示见 SDK 仓库。
 
 官方后端首次升级会将旧 jrrp / daily_pic 记录导入 daily 的命名空间，旧表保留供回滚。后续运行只访问插件存储，不写入聊天消息表。
 
@@ -42,3 +42,7 @@ npm test
 ## 1.0.4：简化系统信息显示
 
 `/sys` 的时长显示改为 `运行时长：2天3小时4分5秒`，移除标签中的“（距上次部署）”和时间单位之间的空格。计算方式仍基于上次确认的 Cloudflare 部署时间。删除硬编码的“平台：Cloudflare Pages”和“运行时：Workers（无状态，按请求执行）”两行。
+
+## 1.0.5：调整运行时长顺序
+
+`/sys` 将“运行时长”放到“服务器时间”的下一行。保留 1.0.4 的简化文案与格式，时长计算方式不变。

@@ -16,7 +16,7 @@ export default definePlugin<{showIds:boolean;helpTitle:string}>({
     const now=Date.now();
     const deployedAt=await ctx.runtime?.getDeployedAt().catch(()=>null);
     const time=new Date(now+8*3600000).toISOString().replace('T',' ').slice(0,19);
-    const lines=['🐱 猫猫机器人（MoeBot）运行状态','————————————','状态:🟢 在线',`后端版本:${ctx.runtime?.version??'未知（后端需升级）'}`,`运行时长：${elapsed(deployedAt,now)}`,`处理节点:${cf.colo??'未知'}${cf.country?' / '+cf.country:''}`,`网络:${cf.httpProtocol??'未知'}${cf.tlsVersion?' / '+cf.tlsVersion:''}`,`来源渠道:${m.platform} / ${m.channelType}`,`服务器时间:${time} (UTC+8)`];
+    const lines=['🐱 猫猫机器人（MoeBot）运行状态','————————————','状态:🟢 在线',`后端版本:${ctx.runtime?.version??'未知（后端需升级）'}`,`处理节点:${cf.colo??'未知'}${cf.country?' / '+cf.country:''}`,`网络:${cf.httpProtocol??'未知'}${cf.tlsVersion?' / '+cf.tlsVersion:''}`,`来源渠道:${m.platform} / ${m.channelType}`,`服务器时间:${time} (UTC+8)`,`运行时长：${elapsed(deployedAt,now)}`];
     if(ctx.config.showIds)lines.push(`本群 openid:${m.groupId??'(私聊,无群)'}`,`发送者 openid:${m.sender??'未知'}`);
     await ctx.reply.text(lines.join('\n'));
   }
