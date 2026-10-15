@@ -6,13 +6,14 @@ test('sys reports the backend version and elapsed deployment time instead of plu
   const mock=createTestContext({config:{showIds:false,helpTitle:'帮助'},command:{id:'sys'},runtime:{version:'0.7.7',getDeployedAt:async()=> '2026-10-12T00:00:00Z'}});
   await plugin.onCommand(mock.context);
   assert.match(mock.replies[0],/后端版本:0\.7\.7/);
-  assert.match(mock.replies[0],/运行时长（距上次部署）:2天 3小时 4分 5秒/);
+  assert.match(mock.replies[0],/运行时长：2天3小时4分5秒/);
+  assert.doesNotMatch(mock.replies[0],/^(?:平台|运行时)[:：]/m);
   assert.match(mock.replies[0],/2026-10-14 11:04:05 \(UTC\+8\)/);
 });
 test('older cores and unavailable deployment metadata do not fabricate uptime or break sys',async()=>{
   for(const runtime of [undefined,{version:'0.7.7',getDeployedAt:async()=>null},{version:'0.7.7',getDeployedAt:async()=>{throw Error('D1 unavailable');}},{version:'0.7.7',getDeployedAt:async()=> 'invalid'},{version:'0.7.7',getDeployedAt:async()=> '2999-01-01T00:00:00Z'}]) {
     const mock=createTestContext({config:{showIds:false},command:{id:'sys'},runtime});await plugin.onCommand(mock.context);
-    assert.match(mock.replies[0],/运行时长（距上次部署）:未知/);
+    assert.match(mock.replies[0],/运行时长：未知/);
     assert.doesNotMatch(mock.replies[0],/NaN|undefined/);
   }
 });
